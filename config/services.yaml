@@ -1,0 +1,26 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    App\Controller\:
+        resource: '../src/Controller/'
+        tags: ['controller.service_arguments']
+
+    App\Payment\PaypalPaymentProcessorAdapter: ~
+    App\Payment\StripePaymentProcessorAdapter: ~
+
+    App\Controller\PurchaseController:
+        arguments:
+            $paymentProcessors:
+                - '@App\Payment\PaypalPaymentProcessorAdapter'
+                - '@App\Payment\StripePaymentProcessorAdapter'

@@ -1,0 +1,59 @@
+### Calculate price with coupon
+POST http://127.0.0.1:8337/calculate-price
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "DE123456789",
+    "couponCode": "D15"
+}
+
+### Calculate price without coupon
+POST http://127.0.0.1:8337/calculate-price
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "IT12345678900"
+}
+
+### Purchase with PayPal
+POST http://127.0.0.1:8337/purchase
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "DE123456789",
+    "couponCode": "D15",
+    "paymentProcessor": "paypal"
+}
+
+### Purchase with Stripe
+POST http://127.0.0.1:8337/purchase
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "FRAB123456789",
+    "couponCode": "P10",
+    "paymentProcessor": "stripe"
+}
+
+### Invalid tax number
+POST http://127.0.0.1:8337/calculate-price
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "DE12345",
+    "couponCode": "D15"
+}
+
+### Product not found
+POST http://127.0.0.1:8337/calculate-price
+Content-Type: application/json
+
+{
+    "product": 999,
+    "taxNumber": "DE123456789"
+}
